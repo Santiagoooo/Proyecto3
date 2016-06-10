@@ -27,3 +27,39 @@
 body{
   font-family: 'Lato', sans-serif;
 }
+
+header{
+  background: #2d3e50;
+}
+
+.contenido-info-trailer{
+  background-color: #34495e;
+  margin-left:100px;
+  margin-right:100px;
+}
+
+.contenido-info{
+  padding-left: 40px;
+}
+
+.titulo-pelicula{
+  color: #ffffff;
+}
+
+.parrafo-pelicula{
+  color: #bec3c7;
+}
+
+.navbar {
+  background: #2d3e50;
+  margin-bottom: 0px;
+  border: 0px;
+}
+
+.footer {
+  background: #2d3e50;
+}
+
+.medio {
+  background: #2d3e50;
+}

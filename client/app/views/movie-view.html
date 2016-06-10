@@ -1,29 +1,30 @@
 <ng-include src="'views/movie-nav.html'"></ng-include>
 
-
-<div class="row" style="margin-left:100px;margin-right:100px;">
-  <div class="col-md-6">
-    <h3>{{ movie.title }}</h3>
-    <p>{{ movie.sinopsis }}</p>
-    <p><a ng-href={{movie.wikipedia}}>Leer más <i class="fa fa-external-link"></i></a></p>
-  </div>
-  <div class="col-md-6">
-    <div>
-      <div role="button" class="boton-accion boton-like">
-        <span class="boton-label"><i class="fa fa-heart"></i> Me gusta</span>
-        <span class="js-likes-counter">{{ movie.meGusta }}</span>
-      </div>
-      <div role="button" class="boton-accion boton-dislike">
-        <span class="boton-label">No me gusta</span>
-        <span class="js-likes-counter">{{ movie.noMeGusta }}</span>
-      </div>
+<div class="contenido-info-trailer">
+  <div class="row">
+    <div class="col-md-6 contenido-info">
+      <h3 class="titulo-pelicula">{{ movie.title }}</h3>
+      <p class="parrafo-pelicula">{{ movie.sinopsis }}</p>
+      <p><a ng-href={{movie.wikipedia}} class="titulo-pelicula">Leer más <i class="fa fa-external-link"></i></a></p>
     </div>
-    <youtube src="movie.url"></youtube>
+    <div class="col-md-6">
+      <div>
+        <div role="button" class="boton-accion boton-like">
+          <span class="boton-label"><i class="fa fa-heart"></i> Me gusta</span>
+          <span class="js-likes-counter">{{ movie.meGusta }}</span>
+        </div>
+        <div role="button" class="boton-accion boton-dislike">
+          <span class="boton-label">No me gusta</span>
+          <span class="js-likes-counter">{{ movie.noMeGusta }}</span>
+        </div>
+      </div>
+      <youtube src="movie.url"></youtube>
+    </div>
   </div>
-</div>
-<div class="row" style="margin-left:100px;margin-right:100px;">
-  <div class="col-md-6">
-    <h3>Peliculas relacionadas</h3>
-    <h5>{{ movie.recomendada }}</h5>
+  <div class="row">
+    <div class="col-md-6 contenido-info" >
+      <h3 class="titulo-pelicula">Peliculas relacionadas</h3>
+      <h5 class="parrafo-pelicula">{{ movie.recomendada }}</h5>
+    </div>
   </div>
 </div>
