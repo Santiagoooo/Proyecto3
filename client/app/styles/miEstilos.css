@@ -28,10 +28,6 @@ body{
   font-family: 'Lato', sans-serif;
 }
 
-header{
-  background: #2d3e50;
-}
-
 .contenido-info-trailer{
   background-color: #34495e;
   margin-left:100px;
@@ -60,6 +56,20 @@ header{
   background: #2d3e50;
 }
 
-.medio {
+.contorno {
   background: #2d3e50;
+}
+
+.view-edit {
+  background: #2d3e50;
+  border-bottom: 0px;
+}
+
+.menu {
+  max-width: 1100px;
+}
+
+
+.contenido-listado {
+  margin-top: 20px;
 }
