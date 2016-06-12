@@ -33,6 +33,11 @@ body{
   margin-left:100px;
   margin-right:100px;
 }
+.contenido-listado{
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .contenido-info{
   padding-left: 40px;
@@ -58,6 +63,8 @@ body{
 
 .contorno {
   background: #2d3e50;
+  bottom:0;
+  height: 100%;
 }
 
 .view-edit {
