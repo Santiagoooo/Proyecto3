@@ -24,6 +24,10 @@
   width: 39%;
 }
 
+.navbar-nav{
+  color:white;
+}
+
 body{
   font-family: 'Lato', sans-serif;
 }

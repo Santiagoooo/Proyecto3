@@ -1,0 +1,22 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2>Registrarse</h2>
+  <form role="form" id="registro">
+    <div class="form-group">
+      <label for="firstName" class="control-label">First Name</label>
+      <input type="text" ng-model="user.firstName" class="form-control" placeholder="Enter First Name">
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="control-label">Last Name</label>
+      <input type="text" ng-model="user.lastName" class="form-control" placeholder="Enter Last Name">
+    </div>
+    <div class="form-group">
+      <label for="username" class="control-label">User</label>
+      <input type="text" ng-model="user.username" class="form-control" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+      <label for="password" class="control-label">Password</label>
+      <input type="password" ng-model="user.password" class="form-control" placeholder="Enter password">
+    </div>
+    <input type="submit" class="btn btn-primary" ng-click="saveUser()" value="Save">
+  </form>
+</div>

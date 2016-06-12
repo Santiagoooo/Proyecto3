@@ -48,6 +48,11 @@ angular
         templateUrl: 'views/movie-edit.html',
         controller: 'MovieEditCtrl',
       })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -61,6 +66,16 @@ angular
   })
   .factory('Movie', function(MovieRestangular) {
     return MovieRestangular.service('movie');
+  })
+  .factory('UserRestangular', function(Restangular) {
+  return Restangular.withConfig(function(RestangularConfigurer) {
+    RestangularConfigurer.setRestangularFields({
+      id: '_id'
+    });
+  });
+  })
+  .factory('User', function(UserRestangular) {
+    return UserRestangular.service('user');
   })
   .directive('youtube', function() {
     return {
