@@ -74,6 +74,7 @@ angular.module('clientApp')
                     par = par.parent()[0];
                     console.log(par);
                     doneTyping(par.getAttribute("id"), par.getAttribute("nombrePelicula"));
+                    $result.innerHTML = "";
                   }
                   else{
                     doneTyping(e.target.id, e.target.nombrePelicula)
