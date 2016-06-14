@@ -63,7 +63,7 @@ angular.module('clientApp')
                   resultRow.setAttribute('nombrePelicula', result.d[i].l);
     		    		}
 
-    		    		resultRow.setAttribute('href', destinationUrl);
+    		    		//resultRow.setAttribute('href', "destinationUrl");
     		    		resultRow.setAttribute('target', '_blank');
                 resultRow.onclick = function(e) {
 
