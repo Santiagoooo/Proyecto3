@@ -1,0 +1,105 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+
+
+
+/***********************
+************************
+****** Main Style ******
+************************
+************************
+*/
+
+
+
+
+
+/* Style for address input box*/
+#searchBox{
+	display: block;
+	margin: 2% auto 0%;
+	text-align: left;
+	width: 50%;
+	height: 2em;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	font-weight: 300;
+	outline: none;
+	border: none;
+	border-bottom: 2px solid #aaa;
+	padding-left: 21px;
+}
+
+input[type="text"]:focus {
+	border-color: #4d90fe;
+}
+
+input::-webkit-input-placeholder {
+    color: #000;
+    opacity: 0.5;
+    font-size: 0.7em;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+input::-moz-placeholder {
+    color: #000;
+    opacity: 0.5;
+    font-size: 0.7em;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+#result {
+	width: 52%;
+	margin: 0 auto;
+	text-align: left;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.resultRow {
+	padding: 2px 15px;
+	border-bottom: 1px solid #ccc;
+	display: block;
+}
+
+.resultRow:hover {
+	background-color: #FBFBDF;
+}
+
+.poster {
+	background-image: url('../img/noimage.png');
+	display: inline-block;
+	width: 40px;
+	height: 54px;
+	display: inline-block;
+	background-size: contain;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
+
+.description {
+	display: inline-block;
+	padding: 15px;
+	vertical-align: middle;
+	width: 75%;
+	line-height: 1.2em;
+}
+
+.description h4 {
+	color: #3177EB;
+	font-size: 18px;
+	padding-bottom: 4px;
+	font-weight: 300;
+	line-height: 1.2em;
+}
+
+.description h5 {
+	color: #686868;
+	font-size: 13px;
+	font-weight: 300;
+}
