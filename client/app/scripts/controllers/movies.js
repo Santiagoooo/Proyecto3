@@ -10,9 +10,14 @@
  angular.module('clientApp')
  .controller('MoviesCtrl', function ($scope, Movie) {
 
-   $scope.sortType = 'title'; // set the default sort type
-   $scope.sortReverse  = false;  // set the default sort order
-   $scope.searchFish   = '';     // set the default search/filter term
+   $scope.sortType = 'title';    // Por defecto ordeno por titulo
+   $scope.sortReverse  = false;  // Por defecto se utiliza el orden normal
+   $scope.searchTerm   = '';     // Por defecto no hay un termino para buscar
 
-   $scope.movies = Movie.getList().$object;
+   //Obtengo todas las peliculas
+   $scope.movies = Movie.getList({limit:1000000}).$object;
+   console.log("Peliculas todas");
+   console.log($scope.movies);
+   console.log(Movie.getList());
+   console.log(Movie);
  });
