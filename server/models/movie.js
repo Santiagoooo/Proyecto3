@@ -47,6 +47,9 @@ var MovieSchema = new mongoose.Schema({
   noMeGusta: {
     type: Number,
     required: true
+  },
+  palabrasClave: {
+    type: String
   }
 });
 

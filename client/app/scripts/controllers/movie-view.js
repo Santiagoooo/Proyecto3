@@ -14,4 +14,4 @@ angular.module('clientApp')
 
   //Obtengo la pelicula que tiene el id indicado
   $scope.movie = Movie.one($routeParams.id).get().$object;
-});
+  });
