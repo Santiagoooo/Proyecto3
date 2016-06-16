@@ -14,11 +14,15 @@ angular
     'angular-storage',
     'angular-jwt',
     'ngRoute',
-    'restangular'
+    'restangular',
+    'angular-flash.service',
+    'angular-flash.flash-alert-directive'
   ])
-  .config(function ($routeProvider, RestangularProvider, authProvider, $httpProvider, $locationProvider,jwtInterceptorProvider ) {
+  .config(function ($routeProvider, RestangularProvider, authProvider, $httpProvider, $locationProvider,jwtInterceptorProvider, flashProvider ) {
 
      RestangularProvider.setBaseUrl('http://localhost:3000');
+
+     flashProvider.errorClassnames.push('alert-danger');
 
     $routeProvider
       .when('/', {

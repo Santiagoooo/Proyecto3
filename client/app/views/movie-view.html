@@ -29,9 +29,18 @@
     </div>
     <div class="row">
       <div class="col-md-6 contenido-info" >
-        <h3 class="titulo-pelicula">Peliculas relacionadas</h3>
-        <h5 class="parrafo-pelicula">{{ movie.recomendada }}</h5>
+        <h3 class="titulo-pelicula">Palabras clave</h3>
+        <div ng-repeat="palabraClave in movie.palabrasClave.split(',')">
+                <h5 class="parrafo-pelicula">{{palabraClave}}</h5>
+        </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6 contenido-info" >
+        <h3 class="titulo-pelicula">Peliculas relacionadas</h3>
+          <h5 class="parrafo-pelicula">{{ movie.recomendada }}</h5>
+      </div>
+    </div>
+
   </div>
 </div>
