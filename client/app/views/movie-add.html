@@ -1,6 +1,10 @@
-  <form role="form" id="formulario">
+  <!--<form name="formAgregar" role="form" id="formulario">
     <div class="form-group">
-      <input type="text" ng-model="movie.title" class="campoAgregar" id="searchBox" placeholder="Ingresar titulo" autocomplete="off">
+      <input type="text" name="campoTitulo" ng-model="movie.title" class="campoAgregar" id="searchBox" placeholder="Ingresar titulo" autocomplete="off" required="true">
+      <div role="alert">
+        <span class="error" ng-show="formAgregar.campoTitulo.$error.required">
+         Required!</span>
+      </div>
       <div id="result"></div>
     </div>
     <div class="form-group">
@@ -25,4 +29,43 @@
       <input type="text" ng-model="movie.wikipedia" class="campoAgregar" id="wikipedia" placeholder="Ingresar URL de Wikipedia">
     </div>
     <input type="submit" class="btn btn-primary botonGuardar" ng-click="saveMovie()" value="Save">
-  </form>
+  </form>-->
+
+  <div flash-alert="error" active-class="in" class="alert fade">
+    <strong class="alert-heading">Error!</strong>
+    <span class="alert-message">{{flash.message}}</span>
+  </div>
+  <form ng-submit="saveMovie()" name="form" role="form" id="formulario">
+    <div class="form-group">
+      <input type="text" name="titulo" ng-model="movie.title" class="campoAgregar" id="searchBox" placeholder="Ingresar titulo" autocomplete="off" required />
+      <span ng-show="hasError('titulo', 'required')"></span>
+      <div id="result"></div>
+    </div>
+    <div class="form-group">
+      <input type="text" name="año" ng-model="movie.anio" class="campoAgregar" id="año" placeholder="Ingresar año" required>
+      <span ng-show="hasError('año', 'required')"></span>
+    </div>
+    <div class="form-group">
+      <input type="text" name="director" ng-model="movie.director" class="campoAgregar" id="director" placeholder="Ingresar Director" required>
+      <span ng-show="hasError('director', 'required')"></span>
+    </div>
+    <div class="form-group">
+      <input type="text" name="actores" ng-model="movie.actores" class="campoAgregar" id="actores" placeholder="Ingresar actores" required>
+      <span ng-show="hasError('actores', 'required')"></span>
+    </div>
+    <div class="form-group">
+      <input type="text" name="sinopsis" ng-model="movie.sinopsis" class="campoAgregar" id="sinopsis" placeholder="Escribir Sinopsis" required>
+      <span ng-show="hasError('sinopsis', 'required')"></span>
+    </div>
+    <div class="form-group">
+      <input type="text" name="duracion" ng-model="movie.duracion" class="campoAgregar" id="duracion" placeholder="Ingresar duración" required>
+      <span ng-show="hasError('duracion', 'required')"></span>
+    </div>
+    <div class="form-group">
+      <input type="text" ng-model="movie.url" class="campoAgregar" id="url" placeholder="Ingresar URL de YouTube">
+    </div>
+    <div class="form-group">
+      <input type="text" ng-model="movie.wikipedia" class="campoAgregar" id="wikipedia" placeholder="Ingresar URL de Wikipedia">
+    </div>
+    <input type="submit" class="btn btn-primary botonGuardar" value="Save">
+</form>

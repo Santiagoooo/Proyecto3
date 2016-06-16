@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('MovieAddCtrl', function ($scope, Movie, $location) {
+  .controller('MovieAddCtrl', function ($scope, Movie, $location, flash) {
 
     $(document).ready(function() {
 
@@ -75,11 +75,10 @@ angular.module('clientApp')
                   if (e.target.id == ""){
                     var par = $(event.target).parent();
                     par = par.parent()[0];
-                    console.log(par);
                     doneTyping(par.getAttribute("id"), par.getAttribute("nombrePelicula"));
                   }
                   else{
-                    doneTyping(e.target.id, e.target.nombrePelicula)
+                    doneTyping(e.target.id, e.target.nombrePelicula);
                   }
                   //Hago desaparecer la lista de sugerencia
                   $result.innerHTML = "";
@@ -221,8 +220,40 @@ angular.module('clientApp')
 
     //guardo la pelicula y redirijo a la lista de peliculas
     $scope.saveMovie = function() {
+      // Set the 'submitted' flag to true
+      $scope.form.$submitted = true;
       Movie.post($scope.movie).then(function() {
         $location.path('/movies');
       });
     };
+
+    $scope.dangerAlert = function () {
+      flash.error = 'Fail!';
+    };
+
+    $scope.hasError = function(field, validation){
+    var err;
+    if(validation){
+      err = ($scope.form[field].$dirty && $scope.form[field].$error[validation]) || ($scope.form.$submitted && $scope.form[field].$error[validation]);
+      if(err){
+        flash.error = 'Debe completar el campo '+field;
+                return 1;
+      }
+      else{
+        return 0;
+      }
+    }
+    err = ($scope.form[field].$dirty && $scope.form[field].$invalid) || ($scope.form.$submitted && $scope.form[field].$invalid);
+    if(err){
+      flash.error = 'Lo ingresado en el campo '+field+' es invalido';
+      return 1;
+    }
+    else{
+      return 0;
+    }
+    };
+
+
+
+
   });
