@@ -118,7 +118,7 @@ angular
           else{
             $rootScope.soyAdmin = false;
           }*/
-        });
+        //});
       });
 
 
