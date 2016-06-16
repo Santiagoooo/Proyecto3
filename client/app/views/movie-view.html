@@ -15,11 +15,11 @@
       </div>
       <div class="col-md-6">
         <div>
-          <div role="button" class="boton-accion boton-like">
+          <div role="button" class="boton-accion boton-like" ng-click="liked()">
             <span class="boton-label"><i class="fa fa-heart"></i> Me gusta</span>
             <span class="js-likes-counter">{{ movie.meGusta }}</span>
           </div>
-          <div role="button" class="boton-accion boton-dislike">
+          <div role="button" class="boton-accion boton-dislike" ng-click="disliked()">
             <span class="boton-label">No me gusta</span>
             <span class="js-likes-counter">{{ movie.noMeGusta }}</span>
           </div>

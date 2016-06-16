@@ -83,7 +83,14 @@ body{
 .menu {
   max-width: 1100px;
 }
+.dropbtn:active{
+  background-color:currentColor;
+}
 
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
 .contenido-listado {
   margin-top: 20px;

@@ -46,6 +46,8 @@ var MovieSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
+
+
 });
 
 // Export the model.

@@ -62,6 +62,11 @@ angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/likes', {
+        templateUrl: 'views/likes.html',
+        controller: 'LikesCtrl',
+        controllerAs: 'likes'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -139,6 +144,17 @@ angular
   })
   .factory('Movie', function(MovieRestangular) {
     return MovieRestangular.service('movie');
+  })
+
+  .factory('likeRestangular', function(Restangular) {
+  return Restangular.withConfig(function(RestangularConfigurer) {
+    RestangularConfigurer.setRestangularFields({
+      id: '_id'
+    });
+  });
+  })
+  .factory('like', function(likeRestangular) {
+    return likeRestangular.service('like');
   })
   .factory('UserRestangular', function(Restangular) {
   return Restangular.withConfig(function(RestangularConfigurer) {
