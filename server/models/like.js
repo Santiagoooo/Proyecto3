@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 
 var LikeSchema = new mongoose.Schema({
   user: {
-    type: Number, //id del usuario
+    type: String, //id del usuario
     required: true
   },
   movie: {
-    type: Number, //id de la pelicula
+    type: String, //id de la pelicula
     required:true
   },
   vote: {
-    type: Number, //0 for dislike, 1 for like
+    type: String, //0 for dislike, 1 for like
     required:true
   }
 });

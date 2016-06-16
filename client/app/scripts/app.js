@@ -45,7 +45,7 @@ angular
         controller: 'MoviesCtrl',
         requiresLogin: true
       })
-      .when('/create/movie', {
+      .when('/admin/create/movie', {
         templateUrl: 'views/movie-add.html',
         controller: 'MovieAddCtrl',
       })
@@ -53,11 +53,11 @@ angular
         templateUrl: 'views/movie-view.html',
         controller: 'MovieViewCtrl',
       })
-      .when('/movie/:id/delete', {
+      .when('/admin/movie/:id/delete', {
         templateUrl: 'views/movie-delete.html',
         controller: 'MovieDeleteCtrl',
       })
-      .when('/movie/:id/edit', {
+      .when('/admin/movie/:id/edit', {
         templateUrl: 'views/movie-edit.html',
         controller: 'MovieEditCtrl',
       })
@@ -65,11 +65,6 @@ angular
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
         controllerAs: 'register'
-      })
-      .when('/likes', {
-        templateUrl: 'views/likes.html',
-        controller: 'LikesCtrl',
-        controllerAs: 'likes'
       })
       .otherwise({
         redirectTo: '/'
@@ -86,9 +81,19 @@ angular
       authProvider.on('loginSuccess', function($location, profilePromise, idToken, store, $rootScope) {
         console.log("Login Success");
         profilePromise.then(function(profile) {
+          console.log(profile);
           store.set('profile', profile);
           store.set('token', idToken);
           $rootScope.tengoPerfil = true;
+      /*    profile.app_metadata =  profile.app_metadata || {};
+          profile.app_metadata.roles = profile.app_metadata.roles || [];
+          console.log(profile.app_metadata.roles);
+        /*  if (profile.app_metadata.roles.indexOf('admin') >= 0){
+            $rootScope.soyAdmin = true;
+          }
+          else{
+            $rootScope.soyAdmin = false;
+          }*/
           $rootScope.redirectModeProfile = profile;
 
         });
@@ -101,9 +106,19 @@ angular
         $location.path('/login');
       });
 
-      authProvider.on('authenticated', function($location) {
+      authProvider.on('authenticated', function($location, profilePromise, $rootScope) {
         console.log("Authenticated");
-
+      /*  profilePromise.then(function(profile) {
+          profile.app_metadata =  profile.app_metadata || {};
+          profile.app_metadata.roles = profile.app_metadata.roles || [];
+          console.log(profile.app_metadata.roles);
+          /*if (profile.app_metadata !== undefined && profile.app_metadata.roles.indexOf('admin') >= 0){
+            $rootScope.soyAdmin = true;
+          }
+          else{
+            $rootScope.soyAdmin = false;
+          }*/
+        });
       });
 
 
@@ -150,15 +165,15 @@ angular
     return MovieRestangular.service('movie');
   })
 
-  .factory('likeRestangular', function(Restangular) {
+  .factory('LikeRestangular', function(Restangular) {
   return Restangular.withConfig(function(RestangularConfigurer) {
     RestangularConfigurer.setRestangularFields({
       id: '_id'
     });
   });
   })
-  .factory('like', function(likeRestangular) {
-    return likeRestangular.service('like');
+  .factory('Like', function(LikeRestangular) {
+    return LikeRestangular.service('like');
   })
   .factory('UserRestangular', function(Restangular) {
   return Restangular.withConfig(function(RestangularConfigurer) {

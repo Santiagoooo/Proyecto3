@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-.controller('MovieViewCtrl', function ( $scope, $routeParams, Movie,like,auth) {
+.controller('MovieViewCtrl', function ( $scope, $routeParams,$location ,Movie, Like, auth) {
 
   $scope.viewMovie = true;
 
@@ -27,7 +27,7 @@ angular.module('clientApp')
           $scope.like.vote=1;
 
           $scope.movie.save();
-          like.post($scope.like).then(function(){
+          Like.post($scope.like).then(function(){
             $location.path('/movie/' + $routeParams.id);
           });
 

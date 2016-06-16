@@ -1,4 +1,4 @@
 module.exports = {
   movie: require('./Movie'),
-  like: require('./like')
+  like: require('./Like')
 };
