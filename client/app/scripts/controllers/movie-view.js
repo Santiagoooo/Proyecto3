@@ -19,20 +19,30 @@ angular.module('clientApp')
     $scope.liked = function() {
       Movie.one($routeParams.id).get().then(function(movie) {
         auth.profilePromise.then(function(profile){
-          $scope.like={};
-          $scope.movie = movie;
-          $scope.movie.meGusta+=1;
-          $scope.like.user=profile.user_id;
-          $scope.like.movie=$routeParams.id;
-          $scope.like.vote=1;
 
-          $scope.movie.save();
-          Like.post($scope.like).then(function(){
-            $location.path('/movie/' + $routeParams.id);
+          Like.getList({movie: $routeParams.id, user: profile.user_id}).then(function(like) {
+            //Obtengo la tupla que con los datos del usuario y la pelicula
+            //Si existe, luego el usuario ya voto, por lo tanto si vuelve a presionar se quita el like
+            if(like.length != 0){
+              //Debo quitar el like
+
+            }
+            else{
+              $scope.like={};
+              $scope.movie = movie;
+              $scope.movie.meGusta+=1;
+              $scope.like.user=profile.user_id;
+              $scope.like.movie=$routeParams.id;
+              $scope.like.vote=1;
+
+              $scope.movie.save();
+              Like.post($scope.like).then(function(){
+                $location.path('/movie/' + $routeParams.id);
+              });
+            }
           });
-
         });
-        });
+      });
     };
 
     $scope.disliked = function() {
