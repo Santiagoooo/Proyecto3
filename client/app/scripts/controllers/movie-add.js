@@ -135,6 +135,7 @@ angular.module('clientApp')
     var $duracion = $('#duracion');
     var $url = $('#url');
     var $wikipedia = $('#wikipedia');
+    var $genero = $('#genero');
 
 
     function doneTyping (id, nombrePelicula) {
@@ -147,6 +148,8 @@ angular.module('clientApp')
              data: "", //ur data to be sent to server
              type: "GET",
              success: function (data) {
+
+               console.log(JSON.stringify(data));
 
                 //Cargo los campos con la info obtenida
 
@@ -162,13 +165,21 @@ angular.module('clientApp')
                 $scope.movie.anio = data.Year;
 
                 $director.val(data.Director);
-                $scope.movie.director = data.Director;
+                $scope.movie.director = (data.Director).split(", ");
+
+                console.log(data);
 
                 $actores.val(data.Actors);
-                $scope.movie.actores = data.Actors;
+                $scope.movie.actores = (data.Actors).split(", ");
 
                 $duracion.val(data.Runtime);
                 $scope.movie.duracion = data.Runtime;
+
+                $genero.val(data.Genre);
+                $scope.movie.palabrasClave = (data.Genre).split(", ");
+
+
+
              },
              error: function (x, y, z) {
                 alert(x.responseText +"  " +x.status);
@@ -183,6 +194,10 @@ angular.module('clientApp')
              type: "GET",
              dataType: 'jsonp',
              success: function (data) {
+
+                console.log(data);
+
+
 
                 //Verificio si tiene o no sinopsis asociada
                 if(data.Similar.Info[0].wTeaser !== undefined){
@@ -216,6 +231,9 @@ angular.module('clientApp')
       //Seteo el megusta y nomegusta en 0
       $scope.movie.meGusta = 0;
       $scope.movie.noMeGusta = 0;
+
+
+
     }
 
     //guardo la pelicula y redirijo a la lista de peliculas

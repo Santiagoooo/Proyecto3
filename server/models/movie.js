@@ -16,14 +16,14 @@ var MovieSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  director: {
+  director: [{
     type: String,
     required: true
-  },
-  actores: {
+  }],
+  actores: [{
     type: String,
     required: true
-  },
+  }],
   sinopsis: {
     type: String,
     required: true
@@ -48,9 +48,10 @@ var MovieSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  palabrasClave: {
-    type: String
-  }
+  palabrasClave: [{
+    type: String,
+    required: true
+  }]
 
 
 });

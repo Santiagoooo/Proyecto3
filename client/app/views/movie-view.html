@@ -9,9 +9,13 @@
         <p class="parrafo-pelicula">{{ movie.sinopsis }}</p>
         <p><a ng-href={{movie.wikipedia}} class="titulo-pelicula">Leer más <i class="fa fa-external-link"></i></a></p>
         <h3 class="titulo-pelicula">Director</h3>
-        <h5 class="parrafo-pelicula">{{ movie.director }}</h5>
+        <div ng-repeat="director in movie.director">
+              <h5 class="parrafo-pelicula">{{director}}</h5>
+        </div>
         <h3 class="titulo-pelicula">Actores</h3>
-        <h5 class="parrafo-pelicula">{{ movie.actores }}</h5>
+        <div ng-repeat="actor in movie.actores">
+              <h5 class="parrafo-pelicula">{{actor}}</h5>
+        </div>
       </div>
       <div class="col-md-6">
         <div>
@@ -30,7 +34,7 @@
     <div class="row">
       <div class="col-md-6 contenido-info" >
         <h3 class="titulo-pelicula">Palabras clave</h3>
-        <div ng-repeat="palabraClave in movie.palabrasClave.split(',')">
+        <div ng-repeat="palabraClave in movie.palabrasClave">
                 <h5 class="parrafo-pelicula">{{palabraClave}}</h5>
         </div>
       </div>

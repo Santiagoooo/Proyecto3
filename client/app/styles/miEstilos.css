@@ -101,3 +101,11 @@ body{
   margin: 0 auto;
   width:250px;
 }
+
+#filtros{
+  width: 20%;
+}
+
+#buscador{
+  width: 80%;
+}

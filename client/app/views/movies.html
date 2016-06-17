@@ -7,10 +7,15 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-search"></i></div>
-
-            <input type="text" class="form-control" placeholder="Buscar" ng-model="buscador">
-
+            <input type="text" class="form-control" placeholder="Buscar" ng-model="buscador" id="buscador">
+            <select ng-model='filtroSeleccionado' class='form-control' id="filtros">
+                <option value="" selected>Titulo</option>
+                <option value="director">Director</option>
+                <option value="actor">Actor</option>
+                <option value="genero">Genero</option>
+            </select>
           </div>
+
         </div>
       </form>
 
@@ -41,7 +46,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="movie in movies | orderBy:sortType:sortReverse | filter:buscador">
+          <tr ng-repeat="movie in movies | orderBy:sortType:sortReverse | customFilter:buscador:filtroSeleccionado">
             <td>
               <a ng-href="/#/movie/{{ movie._id }}">{{ movie.title }}</a>
             </td>
@@ -49,10 +54,10 @@
             <td>{{ movie.duracion }}</td>
             <td>
               <div class="button-group">
-                <a ng-href="/#/movie/{{ movie._id }}/edit" class="btn btn-default">
+                <a ng-href="/#/admin/movie/{{ movie._id }}/edit" class="btn btn-default">
                   <span class="glyphicon glyphicon-edit"></span>
                 </a>
-                <a ng-href="/#/movie/{{ movie._id }}/delete" class="btn btn-danger">
+                <a ng-href="/#/admin/movie/{{ movie._id }}/delete" class="btn btn-danger">
                   <span class="glyphicon glyphicon-remove-circle"></span>
                 </a>
               </div>

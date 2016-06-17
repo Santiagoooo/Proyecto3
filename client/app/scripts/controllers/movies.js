@@ -20,4 +20,59 @@
    console.log($scope.movies);
    console.log(Movie.getList());
    console.log(Movie);
+
+
+
+ })
+
+ .filter('customFilter', function() {
+   return function(input, aBuscar, categoria) {
+
+     var output = [];
+
+     // Verifico si se selecciono alguna categoria, de lo contrario el default es buscar por titulo
+     var categoria = categoria || 'title';
+     // Verifico si se escribio algo en el campo de busqueda, de lo contrario el default es ''
+     var aBuscar = aBuscar || '';
+     if(aBuscar == ''){
+       // No hay que realizar ningun filro
+       output = input;
+     }
+     else{
+       // El campo de busqueda no esta vacio, luego hay que filtrar
+       angular.forEach(input, function(pelicula) {
+         switch (categoria) {
+                        case "director":
+                            for (var i = 0; i < pelicula.director.length; i++) {
+                                if (pelicula.director[i].startsWith(aBuscar)) {
+                                    output.push(pelicula);
+                                    break;
+                                }
+                            }
+                            break;
+                        case "actor":
+                            for (var i = 0; i < pelicula.actores.length; i++) {
+                                if (pelicula.actores[i].startsWith(aBuscar)) {
+                                    output.push(pelicula);
+                                    break;
+                                }
+                            }
+                            break;
+                        case "genero":
+                            for (var i = 0; i < pelicula.palabrasClave.length; i++) {
+                                if (pelicula.palabrasClave[i].startsWith(aBuscar)) {
+                                    output.push(pelicula);
+                                    break;
+                                }
+                            }
+                            break;
+                        default:
+                            if (pelicula[categoria].startsWith(aBuscar)) {
+                                output.push(pelicula)
+                            }
+          }
+        });
+      }
+      return output;
+    }
  });
