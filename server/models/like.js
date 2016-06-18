@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var LikeSchema = new mongoose.Schema({
-  user: {
+  userid: {
     type: String, //id del usuario
     required: true
   },
@@ -12,7 +12,16 @@ var LikeSchema = new mongoose.Schema({
   vote: {
     type: String, //0 for dislike, 1 for like
     required:true
+  },
+  time: {
+    type: Date,
+    required: true
+  },
+  username: {
+    type: String,
+    required: true
   }
+
 });
 
 module.exports = mongoose.model('like', LikeSchema);

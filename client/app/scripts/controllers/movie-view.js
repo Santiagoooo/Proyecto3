@@ -64,9 +64,11 @@ angular.module('clientApp')
                     $scope.like={};
                     $scope.movie = movie;
                     $scope.movie.meGusta+=1;
-                    $scope.like.user=profile.user_id;
+                    $scope.like.userid=profile.user_id;
                     $scope.like.movie=$routeParams.id;
                     $scope.like.vote=1;
+                    $scope.like.username=profile.name;
+                    $scope.like.time=new Date();
 
                     $scope.movie.save();
                     botonNoMeGusta.style.opacity = "0.5";

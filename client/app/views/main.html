@@ -1,23 +1,14 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div class="jumbotron" controller="mainCtrl">
+  <div><h2>Timeline<h2></div>
+  <div class="timeline"  data-main-timeline role="list">
+    <div class="item" data-feed-item ng-repeat="like in likes">
+      <div class="item-image">{{}}</div>
+      <div class="item-icon">{{}}</div>
+      <div class="item-image">{{}}</div>
+      <div class="item-time">{{like.time}}</div>
+      <div class="item-text">{{like.username}}</div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+    </div>
+  </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
 </div>
