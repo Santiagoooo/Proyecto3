@@ -31,19 +31,19 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main',
-        requireLogin: false
+        requiresLogin: false
       })
       .when('/login', {
         controller: 'LoginCtrl',
         templateUrl: 'views/login.html',
         pageTitle: 'Login',
-        requireLogin: false
+        requiresLogin: false
       })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about',
-        requireLogin: false
+        requiresLogin: false
       })
       .when('/movies', {
         templateUrl: 'views/movies.html',
@@ -53,13 +53,12 @@ angular
       .when('/admin/create/movie', {
         templateUrl: 'views/movie-add.html',
         controller: 'MovieAddCtrl',
-        requireLogin: true,
+        requiresLogin: true,
         resolve:{
         "check":function($rootScope, $location){
             //verificar si no soy admin que no me deje entrar.
               if($rootScope.soyAdmin === false){
-                  $location.path('/');    //redirect user to home.
-                  alert("You don't have access here");
+                  $location.path('/403');    //redirect user to home.
               }
         }
     }
@@ -67,12 +66,12 @@ angular
       .when('/movie/:id', {
         templateUrl: 'views/movie-view.html',
         controller: 'MovieViewCtrl',
-        requireLogin: false
+        requiresLogin: true
       })
       .when('/admin/movie/:id/delete', {
         templateUrl: 'views/movie-delete.html',
         controller: 'MovieDeleteCtrl',
-        requireLogin: true
+        requiresLogin: true
       })
       .when('/admin/movie/:id/edit', {
         templateUrl: 'views/movie-edit.html',
@@ -83,10 +82,14 @@ angular
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
         controllerAs: 'register',
-        requireLogin: false
+        requiresLogin: false
+      })
+      .when('/403', {
+        templateUrl: 'views/403.html',
+        requiresLogin: false
       })
       .otherwise({
-        redirectTo: '/login'
+        redirectTo: '/'
       });
 
 

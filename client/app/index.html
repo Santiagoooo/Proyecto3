@@ -67,9 +67,9 @@
 
             <ul class="nav navbar-nav" ng-if="tengoPerfil">
               <li class="dropdown">
-                <a ng-href="#/movies" class="dropbtn" >Peliculas <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a  href="#/admin/create/movie">Nueva pelicula</a></li>
+                <a ng-href="#/movies" class="dropbtn" >Peliculas <span class="caret" ng-if="tengoPerfil && soyAdmin"></span></a>
+                <ul class="dropdown-menu" ng-if="tengoPerfil && soyAdmin">
+                  <li><a  href="#/admin/create/movie" >Nueva pelicula</a></li>
                 </ul>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -97,10 +97,10 @@
     </div>
 
 
-    <div class="footer">
+    <!--<div class="footer">
       <div class="container">
       </div>
-    </div>
+    </div>-->
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
