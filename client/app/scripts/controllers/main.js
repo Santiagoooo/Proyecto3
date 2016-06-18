@@ -10,5 +10,5 @@
 angular.module('clientApp')
   .controller('MainCtrl', function ($scope,$routeParams,Like,$location) {
 
-      $scope.likes = Like.getList();
+      $scope.likes = Like.getList().$object;
   });
