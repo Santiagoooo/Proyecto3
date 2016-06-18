@@ -24,21 +24,26 @@ angular
 
      flashProvider.errorClassnames.push('alert-danger');
 
+
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        requireLogin: false
       })
       .when('/login', {
         controller: 'LoginCtrl',
         templateUrl: 'views/login.html',
-        pageTitle: 'Login'
+        pageTitle: 'Login',
+        requireLogin: false
       })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controllerAs: 'about',
+        requireLogin: false
       })
       .when('/movies', {
         templateUrl: 'views/movies.html',
@@ -48,26 +53,40 @@ angular
       .when('/admin/create/movie', {
         templateUrl: 'views/movie-add.html',
         controller: 'MovieAddCtrl',
+        requireLogin: true,
+        resolve:{
+        "check":function($rootScope, $location){
+            //verificar si no soy admin que no me deje entrar.
+              if($rootScope.soyAdmin === false){
+                  $location.path('/');    //redirect user to home.
+                  alert("You don't have access here");
+              }
+        }
+    }
       })
       .when('/movie/:id', {
         templateUrl: 'views/movie-view.html',
         controller: 'MovieViewCtrl',
+        requireLogin: false
       })
       .when('/admin/movie/:id/delete', {
         templateUrl: 'views/movie-delete.html',
         controller: 'MovieDeleteCtrl',
+        requireLogin: true
       })
       .when('/admin/movie/:id/edit', {
         templateUrl: 'views/movie-edit.html',
         controller: 'MovieEditCtrl',
+        requireLogin: true
       })
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
-        controllerAs: 'register'
+        controllerAs: 'register',
+        requireLogin: false
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
 
 
@@ -85,17 +104,16 @@ angular
           store.set('profile', profile);
           store.set('token', idToken);
           $rootScope.tengoPerfil = true;
-      /*    profile.app_metadata =  profile.app_metadata || {};
+          profile.app_metadata =  profile.app_metadata || {};
           profile.app_metadata.roles = profile.app_metadata.roles || [];
           console.log(profile.app_metadata.roles);
-        /*  if (profile.app_metadata.roles.indexOf('admin') >= 0){
+          if (profile.app_metadata.roles.indexOf('admin') >= 0){
             $rootScope.soyAdmin = true;
           }
           else{
             $rootScope.soyAdmin = false;
-          }*/
+          }
           $rootScope.redirectModeProfile = profile;
-
         });
         $location.path('/');
       });
@@ -108,17 +126,18 @@ angular
 
       authProvider.on('authenticated', function($location, profilePromise, $rootScope) {
         console.log("Authenticated");
-      /*  profilePromise.then(function(profile) {
+        profilePromise.then(function(profile) {
           profile.app_metadata =  profile.app_metadata || {};
           profile.app_metadata.roles = profile.app_metadata.roles || [];
           console.log(profile.app_metadata.roles);
-          /*if (profile.app_metadata !== undefined && profile.app_metadata.roles.indexOf('admin') >= 0){
+          if (profile.app_metadata !== undefined && profile.app_metadata.roles.indexOf('admin') >= 0){
             $rootScope.soyAdmin = true;
+            authProvider.soyAdmin = true;
           }
           else{
             $rootScope.soyAdmin = false;
-          }*/
-        //});
+          }
+        });
       });
 
 
@@ -145,6 +164,7 @@ angular
             auth.authenticate(store.get('profile'), token);
             $rootScope.redirectModeProfile =store.get('profile');
             $rootScope.tengoPerfil = true;
+
           }
         } else {
           // Either show the login page or use the refresh token to get a new idToken

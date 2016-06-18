@@ -7,14 +7,15 @@ angular.module('clientApp')
     $scope.auth = auth;
 
 
-    $scope.checkStorage = function checkStorage() {
+
+  /*  $scope.checkStorage = function checkStorage() {
       if (store.get('profile') === true){
         $rootScope.tengoPerfil = true;
       }
       else{
         $rootScope.tengoPerfil = false;
       }
-    }
+    }*/
 
     $scope.logout = function() {
       auth.signout();
