@@ -15,12 +15,12 @@ angular.module('clientApp')
   var botonMeGusta = document.getElementById('botonMeGusta');
 
   auth.profilePromise.then(function(profile){
-    Like.getList({movie: $routeParams.id, user: profile.user_id, vote: 0}).then(function(like){
+    Like.getList({movie: $routeParams.id, userid: profile.user_id, vote: 0}).then(function(like){
       if(like.length == 1){
         botonMeGusta.style.opacity = "0.5";
       }
     });
-    Like.getList({movie: $routeParams.id, user: profile.user_id, vote: 1}).then(function(like){
+    Like.getList({movie: $routeParams.id, userid: profile.user_id, vote: 1}).then(function(like){
       if(like.length == 1){
         botonNoMeGusta.style.opacity = "0.5";
       }
@@ -39,10 +39,10 @@ angular.module('clientApp')
       Movie.one($routeParams.id).get().then(function(movie) {
         auth.profilePromise.then(function(profile){
 
-          Like.getList({movie: $routeParams.id, user: profile.user_id, vote: 0}).then(function(like){
+          Like.getList({movie: $routeParams.id, userid: profile.user_id, vote: 0}).then(function(like){
             if(like.length == 0){
               //No fue realizado el dislike, luego se puede realizar un like
-              Like.getList({movie: $routeParams.id, user: profile.user_id}).then(function(like) {
+              Like.getList({movie: $routeParams.id, userid: profile.user_id}).then(function(like) {
                 //Obtengo la tupla que con los datos del usuario y la pelicula
                 //Si existe, luego el usuario ya voto, por lo tanto si vuelve a presionar se quita el like
 
@@ -91,10 +91,10 @@ angular.module('clientApp')
       Movie.one($routeParams.id).get().then(function(movie) {
         auth.profilePromise.then(function(profile){
 
-          Like.getList({movie: $routeParams.id, user: profile.user_id, vote: 1}).then(function(like){
+          Like.getList({movie: $routeParams.id, userid: profile.user_id, vote: 1}).then(function(like){
             if(like.length == 0){
               //No fue realizado el like, luego se puede realizar un dislike
-              Like.getList({movie: $routeParams.id, user: profile.user_id}).then(function(like) {
+              Like.getList({movie: $routeParams.id, userid: profile.user_id}).then(function(like) {
                 //Obtengo la tupla que con los datos del usuario y la pelicula
                 //Si existe, luego el usuario ya voto, por lo tanto si vuelve a presionar se quita el dislike
 
@@ -116,9 +116,11 @@ angular.module('clientApp')
                     $scope.like={};
                     $scope.movie = movie;
                     $scope.movie.noMeGusta+=1;
-                    $scope.like.user=profile.user_id;
+                    $scope.like.userid=profile.user_id;
                     $scope.like.movie=$routeParams.id;
                     $scope.like.vote=0;
+                    $scope.like.username=profile.name;
+                    $scope.like.time=new Date();
 
                     $scope.movie.save();
                     botonMeGusta.style.opacity = "0.5";
