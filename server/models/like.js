@@ -20,6 +20,14 @@ var LikeSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true
+  },
+  userimage: {
+    type: String,
+    required:false
+  },
+  movietitle: {
+    type: String,
+    required: true
   }
 
 });

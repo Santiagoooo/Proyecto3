@@ -33,28 +33,41 @@ body{
 }
 
 .item {
+    magin:0px auto;
     background: #fff;
     margin-bottom: 1rem;
     min-height: 50px;
 }
 
+
 .item-image {
     display: inline-block;
-    position: relative;
-    vertical-align: top;
-    width: 4rem;
-    height: 4rem;
-    background-position: 50% 50%;
-    background-size: cover;
-}
-.item-icon {
-    display: inline-block;
-    vertical-align: top;
-    width: 4rem;
-    height: 4rem;
-    color: #fff;
+    overflow: hidden;
+    float:left;
+    width: 5rem;
+    height: 5rem;
+    position:relative;
 }
 
+.icon-like{
+  background: #1bbc9b;
+  color: #fff;
+
+}
+
+.icon-dislike{
+  background: #e84c3d;
+  color: #fff;
+}
+.glyphicon-thumbs-up{
+  padding-top: 15px;
+}
+.glyphicon-thumbs-down{
+  padding-top: 15px;
+}
+.item-text{
+  padding-top: 15px;
+}
 .item-time {
     float: right;
     color: #97a3af;

@@ -1,13 +1,29 @@
+<head>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular-pusher/angular-pusher.min.js" type="text/javascript"></script>
+
+
+</head>
+
 <div class="jumbotron" controller="mainCtrl">
   <div><h2>Timeline<h2></div>
   <div class="timeline"  data-main-timeline role="list">
-    <div class="item" data-feed-item ng-repeat="like in likes">
-      <div class="item-image">{{}}</div>
-      <div class="item-icon">{{}}</div>
-      <div class="item-image">{{}}</div>
-      <div class="item-time">{{like.time}}</div>
-      <div class="item-text">{{like.username}}</div>
+    <div class="item" data-feed-item ng-repeat="like in likes | orderBy: 'time':reverse=true">
+      <div class="item-image"><img class="image" src="{{like.userimage}}"/></div>
 
+
+      <div class="item-image icon-like" ng-if="like.vote==1">
+                             <span class="glyphicon glyphicon-thumbs-up"></span>
+
+      </div>
+      <div class="item-image icon-dislike" ng-if="like.vote==0">
+                             <span class="glyphicon glyphicon-thumbs-down"></span>
+
+      </div>
+      <div class="item-time" ><span data-livestamp="{{like.time}}"></span></div>
+      <div class="item-text" ng-if="like.vote==1">{{like.username}} liked {{like.movietitle}}</div>
+      <div class="item-text" ng-if="like.vote==0">{{like.username}} disliked {{like.movietitle}}</div>
     </div>
   </div>
 

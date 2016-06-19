@@ -69,6 +69,8 @@ angular.module('clientApp')
                     $scope.like.vote=1;
                     $scope.like.username=profile.name;
                     $scope.like.time=new Date();
+                    $scope.like.userimage = profile.picture;
+                    $scope.like.movietitle = movie.title;
 
                     $scope.movie.save();
                     botonNoMeGusta.style.opacity = "0.5";
@@ -120,7 +122,9 @@ angular.module('clientApp')
                     $scope.like.movie=$routeParams.id;
                     $scope.like.vote=0;
                     $scope.like.username=profile.name;
-                    $scope.like.time=new Date();
+                    $scope.like.time=new Date().toISOString();
+                    $scope.like.userimage = profile.picture;
+                    $scope.like.movietitle = movie.title;
 
                     $scope.movie.save();
                     botonMeGusta.style.opacity = "0.5";
