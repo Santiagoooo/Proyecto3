@@ -42,7 +42,9 @@
     <div class="row">
       <div class="col-md-6 contenido-info" >
         <h3 class="titulo-pelicula">Peliculas relacionadas</h3>
-          <h5 class="parrafo-pelicula">{{ movie.recomendada }}</h5>
+        <div ng-repeat="recomendada in movie.recomendada">
+                <a ng-href="#/movie/{{movie.idRecomendada[$index]}}" class="titulo-pelicula">{{recomendada}} <i class="fa fa-external-link"></i></a>
+        </div>
       </div>
     </div>
 

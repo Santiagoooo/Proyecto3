@@ -19,7 +19,6 @@ angular.module('clientApp')
     var $result = document.getElementById('result');
     var body = document.getElementsByTagName('body');
 
-
     $input.addEventListener('keyup', function(){
 
     	//Elimina los espacios
@@ -178,8 +177,25 @@ angular.module('clientApp')
                 $genero.val(data.Genre);
                 $scope.movie.palabrasClave = (data.Genre).split(", ");
 
+                $scope.movie.recomendada = new Array();
+                $scope.movie.idRecomendada = new Array();
 
 
+                //Como mucho, puede tener 5 peliculas relacionadas
+                for (var i = 0; i < $scope.movie.palabrasClave.length && $scope.movie.recomendada.length < 5; i++) {
+                  Movie.getList({palabrasClave:$scope.movie.palabrasClave[i]}).then(function(peli){
+                    for (var j = 0; j < peli.length && $scope.movie.recomendada.length < 5; j++) {
+                      if ($scope.movie.recomendada.indexOf(peli[j].title) > -1){
+                        //la pelicula ya esta en el arreglo
+                      }
+                      else {
+                        $scope.movie.recomendada.push(peli[j].title);
+                        $scope.movie.idRecomendada.push(peli[j]._id);
+                        console.log($scope.movie.recomendada);
+                      }
+                    }
+                  });
+                }
              },
              error: function (x, y, z) {
                 alert(x.responseText +"  " +x.status);
@@ -218,9 +234,8 @@ angular.module('clientApp')
                 //for (var i=0; i<data.Similar.Results.length; i++) {
                 // Esto deberia guardar las 5 peliculas relacionadas en un array pero no se bien como hacerlo.
                 //Por ahora solo guarda una pelicula como recomendada.
-                if(data.Similar.Results.length > 0){
-                 $scope.movie.recomendada = data.Similar.Results[0].Name;
-                }
+
+
                 //}
              },
              error: function (x, y, z) {
@@ -228,12 +243,11 @@ angular.module('clientApp')
              }
       });
 
+
+
       //Seteo el megusta y nomegusta en 0
       $scope.movie.meGusta = 0;
       $scope.movie.noMeGusta = 0;
-
-
-
     }
 
     //guardo la pelicula y redirijo a la lista de peliculas
@@ -242,6 +256,11 @@ angular.module('clientApp')
       $scope.form.$submitted = true;
       Movie.post($scope.movie).then(function() {
         $location.path('/movies');
+      },
+      function(response) {
+        if (response.status == 400) {
+          flash.error = 'Esta pelicula ya existe';
+        }
       });
     };
 

@@ -1,12 +1,10 @@
 var mongoose = require('mongoose');
-
+var Schema   = mongoose.Schema;
 // Create the MovieSchema.
 var MovieSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
-    dropDups: true
   },
   url: {
     type: String,
@@ -36,10 +34,14 @@ var MovieSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  recomendada: {
+  recomendada: [{
     type: String,
     required: false
-  },
+  }],
+  idRecomendada: [{
+    type: Schema.Types.ObjectId,
+    required: false
+  }],
   meGusta: {
     type: Number,
     required: true
@@ -52,8 +54,6 @@ var MovieSchema = new mongoose.Schema({
     type: String,
     required: true
   }]
-
-
 });
 
 // Export the model.
