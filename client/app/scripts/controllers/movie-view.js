@@ -80,13 +80,13 @@ angular.module('clientApp')
                     });
                   }
                 }
-                $rootScope.$emit("changeScope", {});
+
               });
             }
           });
         });
       });
-
+      $rootScope.$emit("changeScope", {});
     };
 
     $scope.disliked = function() {
@@ -136,13 +136,13 @@ angular.module('clientApp')
                     });
                   }
                 }
-                $rootScope.$emit("changeScope", {});
+
               });
             }
           });
         });
       });
-
+      $rootScope.$emit("changeScope", {});
     };
 
   });
