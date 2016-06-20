@@ -17,8 +17,6 @@ angular.module('clientApp')
 
 
       $rootScope.$on("changeScope", function(){
-        $scope.$apply(function () {
-             $scope.likes = Like.getList().$object;
+           $scope.likes = Like.getList().$object;
         });
-      });
   });

@@ -42,21 +42,7 @@
               <span ng-show="sortType == 'duracion' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'duracion' && sortReverse" class="fa fa-caret-up"></span>
             </a></th>
-            <th>
-              <a href="" ng-click="sortType = 'meGusta'; sortReverse = !sortReverse">
-                Me gusta
-                <span ng-show="sortType == 'meGusta' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'meGusta' && sortReverse" class="fa fa-caret-up"></span>
-              </a>
-            </th>
-            <th>
-              <a href="" ng-click="sortType = 'noMeGusta'; sortReverse = !sortReverse">
-                No me gusta
-                <span ng-show="sortType == 'noMeGusta' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'noMeGusta' && sortReverse" class="fa fa-caret-up"></span>
-              </a>
-            </th>
-
+          
             <th>Operations</th>
           </tr>
         </thead>
@@ -67,8 +53,6 @@
             </td>
             <td>{{ movie.anio }}</td>
             <td>{{ movie.duracion }}</td>
-            <td>{{ movie.meGusta }}</td>
-            <td>{{ movie.noMeGusta }}</td>
             <td>
               <div class="button-group">
                 <a ng-href="/#/admin/movie/{{ movie._id }}/edit" class="btn btn-default">
