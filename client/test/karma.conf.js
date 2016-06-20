@@ -28,6 +28,7 @@ module.exports = function(config) {
       'bower_components/restangular/dist/restangular.js',
       'bower_components/angular-flash-alert/dist/angular-flash.js',
       'bower_components/angular-flash/dist/angular-flash.js',
+      'bower_components/angular-timeago/dist/angular-timeago.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

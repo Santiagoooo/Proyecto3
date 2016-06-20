@@ -14,6 +14,7 @@ angular
     'angular-storage',
     'angular-jwt',
     'ngRoute',
+    'yaru22.angular-timeago',
     'restangular',
     'angular-flash.service',
     'angular-flash.flash-alert-directive'
