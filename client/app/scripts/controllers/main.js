@@ -16,10 +16,7 @@ angular.module('clientApp')
       $scope.movie = Movie.one($routeParams.id).get().$object;
 
 
-   $rootScope.$on("changeScope", function(){
+      $rootScope.$on("changeScope", function(){
            $scope.likes = Like.getList().$object;
         });
-
-
-
   });

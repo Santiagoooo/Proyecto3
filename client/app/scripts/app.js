@@ -71,12 +71,28 @@ angular
       .when('/admin/movie/:id/delete', {
         templateUrl: 'views/movie-delete.html',
         controller: 'MovieDeleteCtrl',
-        requiresLogin: true
+        requiresLogin: true,
+        resolve:{
+        "check":function($rootScope, $location){
+            //verificar si no soy admin que no me deje entrar.
+              if($rootScope.soyAdmin === false){
+                  $location.path('/403');    //redirect user to home.
+              }
+        }
+    }
       })
       .when('/admin/movie/:id/edit', {
         templateUrl: 'views/movie-edit.html',
         controller: 'MovieEditCtrl',
-        requireLogin: true
+        requireLogin: true,
+        resolve:{
+        "check":function($rootScope, $location){
+            //verificar si no soy admin que no me deje entrar.
+              if($rootScope.soyAdmin === false){
+                  $location.path('/403');    //redirect user to home.
+              }
+        }
+    }
       })
       .when('/register', {
         templateUrl: 'views/register.html',

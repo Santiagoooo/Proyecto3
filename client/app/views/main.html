@@ -22,8 +22,8 @@
 
       </div>
       <div class="item-time" ng-model="like.time"><span data-livestamp="{{like.time}}"></span></div>
-      <div class="item-text" ng-if="like.vote==1" ng-model="vote">{{like.username}} liked {{like.movietitle}}</div>
-      <div class="item-text" ng-if="like.vote==0" ng-model="vote">{{like.username}} disliked {{like.movietitle}}</div>
+      <div class="item-text" ng-if="like.vote==1" ng-model="vote">{{like.username}} liked <a href="/#/movie/{{like.movie}}">{{like.movietitle}}</a></div>
+      <div class="item-text" ng-if="like.vote==0" ng-model="vote">{{like.username}} disliked <a href="/#/movie/{{like.movie}}">{{like.movietitle}}</a></div>
     </div>
   </div>
 

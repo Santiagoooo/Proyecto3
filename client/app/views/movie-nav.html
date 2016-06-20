@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs view-edit">
+<ul class="nav nav-tabs view-edit" ng-if="tengoPerfil && soyAdmin">
   <li role="presentation" ng-class="{active: viewMovie}"><a ng-href="/#/movie/{{ movie._id }}">View</a></li>
-  <li role="presentation" ng-class="{active: editMovie}"><a ng-href="/#/movie/{{ movie._id }}/edit">Edit</a></li>
+  <li role="presentation" ng-class="{active: editMovie}"><a ng-href="/#/admin/movie/{{ movie._id }}/edit">Edit</a></li>
 </ul>

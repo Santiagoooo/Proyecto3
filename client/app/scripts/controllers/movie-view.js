@@ -8,9 +8,12 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-.controller('MovieViewCtrl', function ( $scope,$rootScope ,$routeParams,$location ,Movie, Like, auth) {
+  .controller('MovieViewCtrl', function ( $scope,$rootScope ,$routeParams,$location ,Movie, Like, auth) {
+
 
   $scope.viewMovie = true;
+
+
   var botonNoMeGusta = document.getElementById('botonNoMeGusta');
   var botonMeGusta = document.getElementById('botonMeGusta');
 
@@ -27,14 +30,11 @@ angular.module('clientApp')
     });
   });
 
-
-
   //Obtengo la pelicula que tiene el id indicado
   $scope.movie = Movie.one($routeParams.id).get().$object;
 
 
     $scope.liked = function() {
-
       var botonNoMeGusta = document.getElementById('botonNoMeGusta');
       Movie.one($routeParams.id).get().then(function(movie) {
         auth.profilePromise.then(function(profile){
@@ -75,7 +75,7 @@ angular.module('clientApp')
                     $scope.movie.save();
                     botonNoMeGusta.style.opacity = "0.5";
 
-                    Like.post($scope.like).then(function(){
+                    Like.post($scope.like).then(function(like){
                       $location.path('/movie/' + $routeParams.id);
                     });
                   }
