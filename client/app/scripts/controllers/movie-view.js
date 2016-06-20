@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-.controller('MovieViewCtrl', function ( $scope, $routeParams,$location ,Movie, Like, auth) {
+.controller('MovieViewCtrl', function ( $scope,$rootScope ,$routeParams,$location ,Movie, Like, auth) {
 
   $scope.viewMovie = true;
   var botonNoMeGusta = document.getElementById('botonNoMeGusta');
@@ -80,11 +80,13 @@ angular.module('clientApp')
                     });
                   }
                 }
+                $rootScope.$emit("changeScope", {});
               });
             }
           });
         });
       });
+
     };
 
     $scope.disliked = function() {
@@ -134,11 +136,13 @@ angular.module('clientApp')
                     });
                   }
                 }
+                $rootScope.$emit("changeScope", {});
               });
             }
           });
         });
       });
+
     };
 
   });
