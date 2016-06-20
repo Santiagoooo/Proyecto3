@@ -12,7 +12,7 @@
 angular.module('clientApp')
   .controller('MainCtrl', function ($scope,$rootScope,$routeParams,Movie,Like,$location) {
 
-      $scope.likes = Like.getList().$object;
+      $scope.likes = Like.getList({limit:7}).$object;
       $scope.movie = Movie.one($routeParams.id).get().$object;
 
 

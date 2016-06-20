@@ -125,16 +125,7 @@ angular.module('clientApp')
 
     $scope.movie = {};
 
-    //Obtengo los elementos del formulario
-    var $titulo = $('#searchBox');
-    var $anio = $('#año');
-    var $director = $('#director');
-    var $actores = $('#actores');
-    var $sinopsis = $('#sinopsis');
-    var $duracion = $('#duracion');
-    var $url = $('#url');
-    var $wikipedia = $('#wikipedia');
-    var $genero = $('#genero');
+
 
 
     function doneTyping (id, nombrePelicula) {
@@ -148,11 +139,9 @@ angular.module('clientApp')
              type: "GET",
              success: function (data) {
 
-               console.log(JSON.stringify(data));
-
                 //Cargo los campos con la info obtenida
 
-                $titulo.val(data.Title);
+                //$titulo.val(data.Title);
                 $scope.movie.title = data.Title;
 
                 //Guardo por el momento la sinopsis de este sitio, pero no voy a mostrarla hasta
@@ -160,21 +149,19 @@ angular.module('clientApp')
                 //se mostrara esta.
                 $scope.movie.sinopsis = data.Plot;
 
-                $anio.val(data.Year);
+                //$anio.val(data.Year);
                 $scope.movie.anio = data.Year;
 
-                $director.val(data.Director);
+                //$director.val(data.Director);
                 $scope.movie.director = (data.Director).split(", ");
 
-                console.log(data);
-
-                $actores.val(data.Actors);
+              //  $actores.val(data.Actors);
                 $scope.movie.actores = (data.Actors).split(", ");
 
-                $duracion.val(data.Runtime);
+              //  $duracion.val(data.Runtime);
                 $scope.movie.duracion = data.Runtime;
 
-                $genero.val(data.Genre);
+              //  $genero.val(data.Genre);
                 $scope.movie.palabrasClave = (data.Genre).split(", ");
 
                 $scope.movie.recomendada = new Array();
@@ -191,7 +178,6 @@ angular.module('clientApp')
                       else {
                         $scope.movie.recomendada.push(peli[j].title);
                         $scope.movie.idRecomendada.push(peli[j]._id);
-                        console.log($scope.movie.recomendada);
                       }
                     }
                   });
@@ -205,38 +191,27 @@ angular.module('clientApp')
       //La api requeire se realice el encode
       title =  encodeURI(nombrePelicula);
       $.ajax({
-             url: "http://www.tastekid.com/api/similar?q="+title+"&k=227278-Pelicula-Q60XAF18&info=1&limit=5",
+             url: "http://www.tastekid.com/api/similar?q="+title+"&k=227278-Pelicula-Q60XAF18&type=movies&info=1&limit=5",
              data: "", //ur data to be sent to server
              type: "GET",
              dataType: 'jsonp',
              success: function (data) {
 
-                console.log(data);
-
-
-
                 //Verificio si tiene o no sinopsis asociada
                 if(data.Similar.Info[0].wTeaser !== undefined){
-                  $sinopsis.val(data.Similar.Info[0].wTeaser);
+                //  $sinopsis.val(data.Similar.Info[0].wTeaser);
                   $scope.movie.sinopsis = data.Similar.Info[0].wTeaser;
                 }
-                else{
-                  $sinopsis.val($scope.movie.sinopsis);
-                }
+              //  else{
+                //  $sinopsis.val($scope.movie.sinopsis);
+                //}
 
-                $url.val(data.Similar.Info[0].yUrl);
+              //  $url.val(data.Similar.Info[0].yUrl);
                 $scope.movie.url = data.Similar.Info[0].yUrl;
 
-                $wikipedia.val(data.Similar.Info[0].wUrl);
+              //  $wikipedia.val(data.Similar.Info[0].wUrl);
                 $scope.movie.wikipedia = data.Similar.Info[0].wUrl;
 
-                //Peliculas recomendadas.
-                //for (var i=0; i<data.Similar.Results.length; i++) {
-                // Esto deberia guardar las 5 peliculas relacionadas en un array pero no se bien como hacerlo.
-                //Por ahora solo guarda una pelicula como recomendada.
-
-
-                //}
              },
              error: function (x, y, z) {
                 alert(x.responseText +"  " +x.status);

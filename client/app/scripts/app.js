@@ -39,12 +39,6 @@ angular
         pageTitle: 'Login',
         requiresLogin: false
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about',
-        requiresLogin: false
-      })
       .when('/movies', {
         templateUrl: 'views/movies.html',
         controller: 'MoviesCtrl',
@@ -55,13 +49,13 @@ angular
         controller: 'MovieAddCtrl',
         requiresLogin: true,
         resolve:{
-        "check":function($rootScope, $location){
-            //verificar si no soy admin que no me deje entrar.
-              if($rootScope.soyAdmin === false){
-                  $location.path('/403');    //redirect user to home.
-              }
+          "check":function($rootScope, $location){
+              //verificar si no soy admin que no me deje entrar.
+                if($rootScope.soyAdmin === false){
+                    $location.path('/403');
+                }
+          }
         }
-    }
       })
       .when('/movie/:id', {
         templateUrl: 'views/movie-view.html',
@@ -73,32 +67,26 @@ angular
         controller: 'MovieDeleteCtrl',
         requiresLogin: true,
         resolve:{
-        "check":function($rootScope, $location){
-            //verificar si no soy admin que no me deje entrar.
-              if($rootScope.soyAdmin === false){
-                  $location.path('/403');    //redirect user to home.
-              }
+          "check":function($rootScope, $location){
+              //verificar si no soy admin que no me deje entrar.
+                if($rootScope.soyAdmin === false){
+                    $location.path('/403');
+                }
+          }
         }
-    }
       })
       .when('/admin/movie/:id/edit', {
         templateUrl: 'views/movie-edit.html',
         controller: 'MovieEditCtrl',
         requireLogin: true,
         resolve:{
-        "check":function($rootScope, $location){
-            //verificar si no soy admin que no me deje entrar.
-              if($rootScope.soyAdmin === false){
-                  $location.path('/403');    //redirect user to home.
-              }
+          "check":function($rootScope, $location){
+              //verificar si no soy admin que no me deje entrar.
+                if($rootScope.soyAdmin === false){
+                    $location.path('/403');
+                }
+          }
         }
-    }
-      })
-      .when('/register', {
-        templateUrl: 'views/register.html',
-        controller: 'RegisterCtrl',
-        controllerAs: 'register',
-        requiresLogin: false
       })
       .when('/403', {
         templateUrl: 'views/403.html',
@@ -108,50 +96,49 @@ angular
         redirectTo: '/'
       });
 
-
+      //Configuracion del modulo de autenticacion
       authProvider.init({
           domain: 'santiago.auth0.com',
           clientID: 'i0RhWEgoSk87efX7sbaFtD6yOe6kDl3p',
           loginUrl: '/login'
       });
 
-      //Called when login is successful
+      //Se llama cuando el login es exitoso
       authProvider.on('loginSuccess', function($location, profilePromise, idToken, store, $rootScope) {
-        console.log("Login Success");
         profilePromise.then(function(profile) {
-          console.log(profile);
+          //Tengo el perfil, seteo en localStorage profile y token
           store.set('profile', profile);
           store.set('token', idToken);
+          //Variable para saber si tengo que mostrar determinas pestañas solo visibles para usuarios logueados.
           $rootScope.tengoPerfil = true;
           profile.app_metadata =  profile.app_metadata || {};
           profile.app_metadata.roles = profile.app_metadata.roles || [];
-          console.log(profile.app_metadata.roles);
+          //Verfico si el usuario logueado es o no admin.
           if (profile.app_metadata.roles.indexOf('admin') >= 0){
             $rootScope.soyAdmin = true;
           }
           else{
             $rootScope.soyAdmin = false;
           }
+          //Guardo en esta variable el perfil.
           $rootScope.redirectModeProfile = profile;
         });
         $location.path('/');
       });
 
-      //Called when login fails
+      //Se llama cuando el login falla
       authProvider.on('loginFailure', function() {
-        console.log("Error logging in");
         $location.path('/login');
       });
 
+      //Se llama cuando ya se esta logueado.
       authProvider.on('authenticated', function($location, profilePromise, $rootScope) {
-        console.log("Authenticated");
         profilePromise.then(function(profile) {
           profile.app_metadata =  profile.app_metadata || {};
           profile.app_metadata.roles = profile.app_metadata.roles || [];
-          console.log(profile.app_metadata.roles);
           if (profile.app_metadata !== undefined && profile.app_metadata.roles.indexOf('admin') >= 0){
             $rootScope.soyAdmin = true;
-            authProvider.soyAdmin = true;
+            //authProvider.soyAdmin = true;
           }
           else{
             $rootScope.soyAdmin = false;
@@ -214,17 +201,8 @@ angular
   .factory('Like', function(LikeRestangular) {
     return LikeRestangular.service('like');
   })
-  .factory('UserRestangular', function(Restangular) {
-  return Restangular.withConfig(function(RestangularConfigurer) {
-    RestangularConfigurer.setRestangularFields({
-      id: '_id'
-    });
-  });
-  })
-  .factory('User', function(UserRestangular) {
-    return UserRestangular.service('user');
-  })
   .directive('youtube', function() {
+    //Me permite tener el elemento <youtube>
     return {
       restrict: 'E',
       scope: {

@@ -16,14 +16,7 @@
 
    //Obtengo todas las peliculas
    $scope.movies = Movie.getList({limit:1000000}).$object;
-   console.log("Peliculas todas");
-   console.log($scope.movies);
-   console.log(Movie.getList());
-   console.log(Movie);
-
-
-
- })
+  })
 
  .filter('customFilter', function() {
    return function(input, aBuscar, categoria) {
@@ -46,6 +39,7 @@
                             for (var i = 0; i < pelicula.director.length; i++) {
                                 if (pelicula.director[i].startsWith(aBuscar)) {
                                     output.push(pelicula);
+                                    //Ya agregue la pelicula entonces corto
                                     break;
                                 }
                             }
@@ -54,6 +48,7 @@
                             for (var i = 0; i < pelicula.actores.length; i++) {
                                 if (pelicula.actores[i].startsWith(aBuscar)) {
                                     output.push(pelicula);
+                                    //Ya agregue la pelicula entonces corto
                                     break;
                                 }
                             }
@@ -62,6 +57,7 @@
                             for (var i = 0; i < pelicula.palabrasClave.length; i++) {
                                 if (pelicula.palabrasClave[i].startsWith(aBuscar)) {
                                     output.push(pelicula);
+                                    //Ya agregue la pelicula entonces corto
                                     break;
                                 }
                             }
