@@ -22,8 +22,21 @@ angular.module('clientApp')
           like[i].remove();
         }
       });
+
+      var nombre = $scope.movie.title;
+      //Tengo que quitar la referencia de la pelicula a eliminar del resto de las peliculas
+      Movie.getList().then(function (pelicula) {
+          for (var i = 0; i < pelicula.length; i++) {
+              var index = pelicula[i].recomendada.indexOf(nombre);
+              if(index > -1){
+                pelicula[i].recomendada.splice(index,1);
+                pelicula[i].idRecomendada.splice(index,1);
+              }
+              pelicula[i].save();
+          }
+      });
       //Al terminar redirijo al listado de peliculas.
-      $location.path('/movies');
+     $location.path('/movies');
     });
   };
 
