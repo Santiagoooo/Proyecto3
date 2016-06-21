@@ -20,7 +20,13 @@ angular.module('clientApp')
           console.log(like);
           var fin = like.length;
           //Quiero mostrar las ultimas 7 calificaciones.
+          if(like.length>7){
           $scope.likes = like.slice(like.length - 7,like.length);
+          }
+          else{
+            $scope.likes=like;
+          }
+          console.log($scope.likes);
           $timeout(function () {
             refreshList();
           }, 3000);
