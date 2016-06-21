@@ -10,13 +10,20 @@
 
 
 angular.module('clientApp')
-  .controller('MainCtrl', function ($scope,$rootScope,$routeParams,Movie,Like,$location) {
+  .controller('MainCtrl', function ($scope,$rootScope,$routeParams,Movie,Like,$location,$timeout) {
+      
 
-      $scope.likes = Like.getList({limit:7}).$object;
       $scope.movie = Movie.one($routeParams.id).get().$object;
 
-
-      $rootScope.$on("changeScope", function(){
-           $scope.likes = Like.getList().$object;
+      function refreshList()  {
+        Like.getList({limit:7}).then(function (like) {
+          console.log(like);
+          $scope.likes = like;
+          $timeout(function () {
+            refreshList();
+          }, 3000);
         });
+      }
+
+      refreshList();
   });
