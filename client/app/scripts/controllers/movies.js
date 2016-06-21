@@ -32,12 +32,13 @@
        output = input;
      }
      else{
+       aBuscar = aBuscar.toLowerCase();
        // El campo de busqueda no esta vacio, luego hay que filtrar
        angular.forEach(input, function(pelicula) {
          switch (categoria) {
                         case "director":
                             for (var i = 0; i < pelicula.director.length; i++) {
-                                if (pelicula.director[i].startsWith(aBuscar)) {
+                                if (pelicula.director[i].toLowerCase().startsWith(aBuscar) ) {
                                     output.push(pelicula);
                                     //Ya agregue la pelicula entonces corto
                                     break;
@@ -46,7 +47,7 @@
                             break;
                         case "actor":
                             for (var i = 0; i < pelicula.actores.length; i++) {
-                                if (pelicula.actores[i].startsWith(aBuscar)) {
+                                if (pelicula.actores[i].toLowerCase().startsWith(aBuscar)) {
                                     output.push(pelicula);
                                     //Ya agregue la pelicula entonces corto
                                     break;
@@ -55,7 +56,7 @@
                             break;
                         case "genero":
                             for (var i = 0; i < pelicula.palabrasClave.length; i++) {
-                                if (pelicula.palabrasClave[i].startsWith(aBuscar)) {
+                                if (pelicula.palabrasClave[i].toLowerCase().startsWith(aBuscar)) {
                                     output.push(pelicula);
                                     //Ya agregue la pelicula entonces corto
                                     break;
@@ -63,7 +64,7 @@
                             }
                             break;
                         default:
-                            if (pelicula[categoria].startsWith(aBuscar)) {
+                            if (pelicula[categoria].toLowerCase().startsWith(aBuscar)) {
                                 output.push(pelicula)
                             }
           }
