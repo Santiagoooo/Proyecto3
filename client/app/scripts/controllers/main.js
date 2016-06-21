@@ -13,7 +13,7 @@ angular.module('clientApp')
   .controller('MainCtrl', function ($scope,$rootScope,$routeParams,Movie,Like,$location,$timeout) {
 
 
-      $scope.movie = Movie.one($routeParams.id).get().$object;
+      //$scope.movie = Movie.one($routeParams.id).get().$object;
 
       function refreshList()  {
         Like.getList({limit:100}).then(function (like) {
